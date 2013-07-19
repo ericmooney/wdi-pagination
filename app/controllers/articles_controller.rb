@@ -2,15 +2,9 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles_count = Article.count
-
-    # page 2 -1 = 1 x 5 = 5
     @per_page = 5
-    #to get the page you are on, you can set up a route to show you that.. http://localhost:5000/articles?page=2, etc
-    @current_page = params[:page || 1].to_i
-    @page_offset = (@current_page - 1) * @per_page
 
-    @articles = Article.limit(5).offset(5)
+    @articles = Article.page(params[:page]).per_page(@per_page)
 
     respond_to do |format|
       format.html # index.html.erb
