@@ -1,0 +1,6 @@
+<% @articles.each do |article| %>
+  <div class="article">
+    <h2><%= link_to "#{article.id} - #{article.title}", article %></h2>
+    <p><%= article.body %></p>
+  </div>
+<% end %>
