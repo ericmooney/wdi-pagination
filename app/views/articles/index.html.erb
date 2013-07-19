@@ -6,3 +6,10 @@
     <p><%= article.body %></p>
   </div>
 <% end %>
+
+<ul id="pagination">
+  <% (@article_count / @per_page).times do |page| %>
+    <% page_number = page + 1 %>
+    <li><%= link_to page_number, articles_path(:page => page_number) %></li>
+  <% end %>
+</ul>

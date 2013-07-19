@@ -4,6 +4,7 @@ class ArticlesController < ApplicationController
   def index
     pagination
 
+    @article_count = Article.count
     @articles = Article.limit(@per_page).offset(@page_offset)
 
     respond_to do |format|
