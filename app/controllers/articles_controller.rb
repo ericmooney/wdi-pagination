@@ -2,10 +2,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    pagination
-
-    @article_count = Article.count
-    @articles = Article.limit(@per_page).offset(@page_offset)
+    @articles = Article.page(params[:page]).per_page(5)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -82,14 +79,5 @@ class ArticlesController < ApplicationController
       format.html { redirect_to articles_url }
       format.json { head :no_content }
     end
-  end
-
-private
-
-  def pagination
-    @per_page = 5
-    @current_page = (params[:page] || 1).to_i
-
-    @page_offset = (@current_page - 1) * @per_page
   end
 end
