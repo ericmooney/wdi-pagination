@@ -9,6 +9,7 @@
 
 <div id="pagination">
   <%= (@articles_count / @per_page).times do |page| %>
-  <%= link_to page, root_path(:page => page) %>
+  <% actual_page = page + 1 %>
+  <%= link_to actual_page, root_path(:page => actual_page) %>
   <% end %>
 </div>
